@@ -1,52 +1,30 @@
-#include <stdio.h> 
-#include <float.h> 
+#include <stdio.h>
+#include <limits.h> // Diperlukan untuk INT_MAX dan INT_MIN
 
 int main() {
-    int n;         
-    int num;       
-    int min_val;   
-    int max_val;   
-    int prev_num;  
-    float lowest_avg;  
-    float highest_avg; 
+    int n;
+
+    // Membaca jumlah baris masukan berikutnya (n)
     scanf("%d", &n);
-    if (n <= 0) {
-        printf("Jumlah masukan (n) harus bilangan bulat positif.\n");
-        return 1; 
-    }
-    lowest_avg = FLT_MAX; 
-    highest_avg = -FLT_MAX; 
-    scanf("%d", &num);
-    min_val = num;    
-    max_val = num;    
-    prev_num = num;   
-    for (int i = 1; i < n; i++) {
-        scanf("%d", &num); 
-        if (num < min_val) {
-            min_val = num; 
+
+    int current_val;
+    int min_val = INT_MAX; // Inisialisasi nilai terkecil dengan nilai integer maksimum
+    int max_val = INT_MIN; // Inisialisasi nilai terbesar dengan nilai integer minimum
+
+    // Membaca n baris masukan berikutnya dan mencari nilai terkecil serta terbesar
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &current_val);
+        if (current_val < min_val) {
+            min_val = current_val;
         }
-        if (num > max_val) {
-            max_val = num; 
+        if (current_val > max_val) {
+            max_val = current_val;
         }
-        float current_avg = (float)(prev_num + num) / 2.0; 
-        if (current_avg < lowest_avg) {
-            lowest_avg = current_avg;
-        }
-        
-        if (current_avg > highest_avg) {
-            highest_avg = current_avg; 
-        prev_num = num; 
-    }
-    printf("%d\n", min_val);
-    printf("%d\n", max_val);
-    if (n >= 2) {
-        printf("%.2f\n", lowest_avg);  
-        printf("%.2f\n", highest_avg); 
-    } else {
-       
     }
 
-    return 0; 
-}
+    // Menampilkan hasil sesuai spesifikasi Tugas 1
+    printf("%d\n", min_val); // Nilai terkecil
+    printf("%d\n", max_val); // Nilai terbesar
 
+    return 0; // Mengakhiri program dengan sukses
 }
